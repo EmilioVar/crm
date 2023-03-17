@@ -9,6 +9,7 @@
 
 <!-- body -->
 <body>
+    <x-nav-bar/>
     {{ $slot }}
 </body>
 
