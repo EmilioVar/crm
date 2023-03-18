@@ -12,6 +12,7 @@ class ClientController extends Controller
      */
     public function index()
     {
+        
         return view('welcome');
     }
 
@@ -39,32 +40,37 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Client $client)
     {
-        //
+        return view('client.show', compact('client'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Client $client)
     {
-        //
+        return view('client.edit', compact('client'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Client $client)
     {
-        //
+        $client->name = $request->name;
+        $client->direction = $request->direction;
+
+        $client->save();
+
+        return redirect('/')->with('ClientEdited','¡Cliente editado correctamente!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Client $client)
     {
-        //
+        $client->delete();
     }
 }
