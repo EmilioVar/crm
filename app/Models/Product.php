@@ -9,5 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['code','name','price'];
+    protected $fillable = ['code', 'name', 'price'];
+
+    public function mostrar() {
+        return "está heredado!";
+    }
 }
+
