@@ -4,6 +4,7 @@
         {{ session('ClientEdited') }}
     </div>
 @endif
+    <livewire:product-create/>
     <h1 class="fs-4 my-5">Hello, world!</h1>
     <!-- bootstrap table -->
     <table class="table">

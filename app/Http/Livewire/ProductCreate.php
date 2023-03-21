@@ -33,7 +33,7 @@ class ProductCreate extends Component
         // validamos
         $this->validate();
         // creamos el elemento
-        $p = Product::create([
+        Product::create([
             'code' => $rand_number,
             'name' => $this->name,
             'price' => $this->price,
