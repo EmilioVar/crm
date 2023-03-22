@@ -39,6 +39,18 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3 d-flex justify-content-center">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select name="rol" class="form-select" id="rol" aria-label="Floating label select example">
+                                      <option value="admin">Administrador</option>
+                                      <option value="vendor">Vendedor</option>
+                                    </select>
+                                    <label for="floatingSelect">Selecciona un rol</label>
+                                  </div>
+                            </div>
+                        </div>
+
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
