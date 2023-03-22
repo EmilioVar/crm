@@ -14,5 +14,9 @@ class Product extends Model
     public function mostrar() {
         return "está heredado!";
     }
+
+    public function getName() {
+        return $this->name;
+    }
 }
 

@@ -16,6 +16,11 @@ class ProductCreate extends Component
         'name' => 'required|min:3',
         'price' => 'required',
     ];
+    // validación en tiempo reeal con el magic method updated
+    public function updated($modal)
+    {
+        $this->validateOnly($modal);
+    }
 
     public function cleanform() {
         $this->name = '';

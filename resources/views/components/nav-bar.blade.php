@@ -33,7 +33,7 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->name }} | {{ Auth::user()->getRoleNames()->first() }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -90,6 +90,38 @@
                                             <button type="submit" class="btn btn-primary">Guardar</button>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Product create -->
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ProductCreate"
+                data-bs-whatever="@mdo">Crear Producto</button>
+
+            <div class="modal fade" id="ProductCreate" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Producto</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                   <livewire:product-create/>
                                 </div>
                             </div>
                         </div>

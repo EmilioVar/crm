@@ -9,5 +9,5 @@
       <input wire:model="price" type="number" class="form-control" id="price" placeholder="Precio">
       @error('price') <span class="error">{{ $message }}</span> @enderror
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">Submit</button>
   </form>
