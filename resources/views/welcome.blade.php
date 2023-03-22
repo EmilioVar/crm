@@ -12,6 +12,8 @@
                 <x-clients :clients="$clients"/>
                 <!-- Products table -->
                 <livewire:products :products="$products"/>
+                <!-- Invoices table -->
+                <livewire:invoices :invoices="$invoices"/>
             </div>
         </div>
     </div>

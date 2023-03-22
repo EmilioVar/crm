@@ -10,4 +10,8 @@ class Client extends Model
     use HasFactory;
 
     protected $fillable = ['name','direction'];
+
+    protected function invoices() {
+        return $this->hasMany(Invoice::class);
+    }
 }

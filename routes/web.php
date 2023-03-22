@@ -1,10 +1,12 @@
 <?php
 
 use App\Models\Client;
+use App\Models\Invoice;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -21,7 +23,8 @@ use App\Http\Controllers\ProductController;
 Route::get('/', function () {
     $clients = Client::latest()->get();
     $products = Product::latest()->get();
-    return view('welcome', compact('clients','products'));
+    $invoices = Invoice::latest()->get();
+    return view('welcome', compact('clients','products','invoices'));
 });
 
 Auth::routes();
@@ -32,6 +35,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 /* CRUD Clientes con Resource */
 Route::resource('clients', ClientController::class);
+
+/* CRUD Facturas con Resource */
+Route::resource('invoices', InvoiceController::class);
 
 /* CRUD Producto */
 
