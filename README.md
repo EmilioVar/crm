@@ -1,3 +1,6 @@
+* 23/03/2023
+- finalizado CRUD Facturas
+- Añadido sistema de pestañas en welcome
 
 * 22/03/2023
 - Creado generador de numeros aleatorios para el codigo de producto
