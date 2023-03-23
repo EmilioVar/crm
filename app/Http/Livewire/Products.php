@@ -11,8 +11,8 @@ class Products extends Component
     public function mount($products)
     {
         $this->products = $products;
-
     }
+    
     public function render()
     {
         return view('livewire.products');

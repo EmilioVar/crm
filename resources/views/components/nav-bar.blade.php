@@ -97,7 +97,7 @@
                 </div>
             </div>
             <!-- Modal Product create -->
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ProductCreate"
+            <button type="button" class="btn btn-warning mx-3" data-bs-toggle="modal" data-bs-target="#ProductCreate"
                 data-bs-whatever="@mdo">Crear Producto</button>
 
             <div class="modal fade" id="ProductCreate" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -128,6 +128,9 @@
                     </div>
                 </div>
             </div>
+            <!-- Create Invoice -->
+            <a href="{{ route ('invoices.create') }}"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo">Crear Factura</button></a>
         </div>
     </div>
 </nav>

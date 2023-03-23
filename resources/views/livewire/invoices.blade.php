@@ -19,21 +19,21 @@
             <td>{{  App\Models\Client::find($invoice->client_id)->name }}</td>
             <td>{{ $invoice->date }}</td>
             <td>{{ $invoice->amount }}</td>
-             {{-- <td>
+             <td>
                 <button class="btn btn-primary"><a class="text-decoration-none text-white"
-                        href="{{ route('products.show', $product) }}">ver</a></button>
-            </td>
-            <td>
-                <button class="btn btn-warning"><a class="text-decoration-none text-white"
-                        href="{{ route('products.edit', $product) }}">editar</a></button>
+                        href="{{ route('invoices.show', $invoice) }}">ver</a></button>
             </td>
            <td>
-                <form action="{{ route('products.destroy', $product) }}" method="post">
+                <button class="btn btn-warning"><a class="text-decoration-none text-white"
+                        href="{{ route('invoices.edit', $invoice) }}">editar</a></button>
+            </td>
+           <td>
+                <form action="{{ route('invoices.destroy', $invoice) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger" type="submit">borrar</button>
                 </form>
-            </td> --}}
+            </td>
         </tr>
         @empty
             <p class="alert alert-warning">¡No hay clientes! hay que ponerse las pilas ;D</p>

@@ -61,7 +61,8 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        //
+        $clients = Client::all();
+        return view ('invoices.edit', compact('invoice','clients'));
     }
 
     /**
@@ -69,7 +70,14 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        //
+        $invoice->no_invoice = $request->no_invoice;
+        $invoice->client_id = $request->client_id;
+        $invoice->date = $request->date;
+        $invoice->amount = $request->amount;
+
+        $invoice->save();
+
+        return redirect('/')->with('client', '¡Factura editada correctamente!');
     }
 
     /**
@@ -77,6 +85,8 @@ class InvoiceController extends Controller
      */
     public function destroy(Invoice $invoice)
     {
-        //
+        $invoice->delete();
+
+        return redirect('/')->with('client','¡Factura eliminada correctamente!');
     }
 }

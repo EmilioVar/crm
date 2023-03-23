@@ -4,6 +4,9 @@
 - Creado sistema de registro de usuario asignando el rol desde un condicional en RegisterController
 - Finalizado CRUD Product
 
+- En el tema de la factura, hay que referenciar el id de cliente, pero no se especifica el tipo de relación. Vamos a basarnos en que es una relacion factura-cliente 1:n
+- Hasta la tabla de Facturas
+
 * 20/03/2023
 - Creado modelo Product y sus hijos ProductDisplay y ProductLaptop
 - Creando CRUD de Product
