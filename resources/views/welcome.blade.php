@@ -9,9 +9,16 @@
                 @endif
                 @if (Auth::user())
                     <h1 class="fs-4 my-5">Hola {{ Auth::user()->name }}! 👋🏼</h1>
+
+                @else
+                <h1 class="fs-4 my-5">Bienvenido! eres un usuario no logueado</h1>
+
+
                 @endif
                 <div>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <!-- tables -->
+
+                    <div class="nav nav-tabs my-4" id="nav-tab" role="tablist">
                         <!-- Clients -->
                         <button class="nav-link active" id="nav-clients-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-clients" type="button" role="tab" aria-controls="nav-clients"
@@ -21,9 +28,9 @@
                             data-bs-target="#nav-products" type="button" role="tab" aria-controls="nav-products"
                             aria-selected="false">Productos</button>
                         <!-- Invoices -->
-                        <button class="nav-link" id="nav-invoices-tab" data-bs-toggle="tab" data-bs-target="#nav-invoices"
-                            type="button" role="tab" aria-controls="nav-invoices"
-                            aria-selected="false" {{ Auth::user() ? "" : "disabled" }}>Facturas</button>
+                        <button class="nav-link" id="nav-invoices-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-invoices" type="button" role="tab" aria-controls="nav-invoices"
+                            aria-selected="false" {{ Auth::user() ? '' : 'disabled' }}>Facturas</button>
                     </div>
                 </div>
                 <div class="tab-content" id="nav-tabContent">
