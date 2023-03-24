@@ -34,15 +34,17 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /* CRUD Clientes con Resource */
-Route::resource('clients', ClientController::class);
+Route::resource('clients', ClientController::class)->middleware(['role:admin']);
 
 /* CRUD Facturas con Resource */
 Route::resource('invoices', InvoiceController::class);
 
 /* CRUD Producto */
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/product/create', [ProductController::class, 'create'])->name('products.create');
+    Route::get('/products/{product}',[ProductController::class, 'show'])->name('products.show');
+    Route::get('/products/{product}/edit',[ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/product/{product}',[ProductController::class,'update'])->name('products.update');
+    Route::delete('/products/{product}',[ProductController::class, 'destroy'])->name('products.destroy');
+});
 
-Route::get('/product/create', [ProductController::class, 'create'])->name('products.create');
-Route::get('/products/{product}',[ProductController::class, 'show'])->name('products.show');
-Route::get('/products/{product}/edit',[ProductController::class, 'edit'])->name('products.edit');
-Route::put('/product/{product}',[ProductController::class,'update'])->name('products.update');
-Route::delete('/products/{product}',[ProductController::class, 'destroy'])->name('products.destroy');

@@ -1,6 +1,9 @@
 * 23/03/2023
 - finalizado CRUD Facturas
 - Añadido sistema de pestañas en welcome
+- Creada tabla pivot invoice_product y registro de datos al crear una factura
+- Añadido el middleware de spatie permissions en el kernel
+- Finalizada toda la documentación, faltaría por crear unos formularios para crear los productos hijos
 
 * 22/03/2023
 - Creado generador de numeros aleatorios para el codigo de producto
