@@ -46,6 +46,7 @@ class ProductCreate extends Component
         // limpiamos el formulario
         $this->cleanform();
     }
+    
     public function render()
     {
         return view('livewire.product-create');

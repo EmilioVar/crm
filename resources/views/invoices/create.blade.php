@@ -23,6 +23,22 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="client_id">Producto:</label>
+                        <div class="form-floating">
+                            <select name="product" class="form-select" id="product">
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Cantidad:</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity">
+                    </div>
                     <div class="form-group">
                         <label for="date">Fecha:</label>
                         <input type="date" class="form-control" id="date" name="date">

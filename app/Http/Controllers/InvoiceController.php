@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Invoice;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -21,8 +22,9 @@ class InvoiceController extends Controller
      */
     public function create()
     {
+        $products = Product::all();
         $clients = Client::all();
-        return view ('invoices.create', compact('clients'));
+        return view ('invoices.create', compact('clients','products'));
     }
 
     /**
@@ -44,7 +46,12 @@ class InvoiceController extends Controller
             'amount' => $request->amount
         ]);
 
-        return redirect('/')->with('client','¡Factura creada correctamente!');
+        $prod = Product::find($request->product);
+
+        /* $prod->invoices()->attach($prod,['price'=>$request->price,'quantity'=>$request->quantity]);
+        
+
+        return redirect('/')->with('client','¡Factura creada correctamente!'); */
     }
 
     /**
