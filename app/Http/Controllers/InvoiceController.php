@@ -46,10 +46,11 @@ class InvoiceController extends Controller
             'amount' => $request->amount
         ]);
         
-        for($i=0; $i<=count($request->products)-1; $i+=1) {
+        for($i=0; $i<=count($request->products); $i+=1) {
             $prodCount = array_values(array_filter($request->counts, function($num) {
              return $num;
         }));
+        
             Product::find($request->products[$i])->invoices()->attach($invoice,['price'=>10,'quantity'=>$prodCount[$i]]);
         }
 /*         foreach($request->products as $product) {

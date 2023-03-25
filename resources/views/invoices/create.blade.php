@@ -41,7 +41,7 @@
                                             value="{{ $product->id }}">{{ $product->name }} </input>
                                     </td>
                                     <td>
-                                        <p>{{ $product->price }}</p>
+                                        <p id="priceProduct">{{ $product->price }}</p>
                                     </td>
                                     <td>
                                         <input class="form-select"  type="number" name="counts[]" id="">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group">
                         <label for="amount">Importe:</label>
-                        <input type="number" class="form-control" id="amount" name="amount" placeholder="importe">
+                        <input value="0" type="number" class="form-control" id="amount" name="amount" placeholder="importe">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -76,14 +76,25 @@
             $(document).ready(function() {
                 $('#productsTable').DataTable();
             });
-
-            let options = document.querySelectorAll('input[type="checkbox"]');
-
+            // importamos los elementos necesarios para el total y los convertimos en array
+            let options = [...document.querySelectorAll('input[type="checkbox"]')];
+            let price = [...document.querySelectorAll('#priceProduct')];
+            let amount = document.querySelector('#amount');
+            // iteramos los options para escuchar su evento cambiante
             options.forEach(element => {
                 element.addEventListener('change', el => {
-                    console.log(el.})
+                    // si el elemento es marcado
                     if(el.target.checked) {
-                        console.log(el+"está marcado")
+                        /* incrementamos el valor del total
+                        añadiendole el precio que se encuentra en
+                        el mismo lugar de indice en la tabla que el
+                        producto seleccionado */
+                        amount.value = Number(amount.value) + Number(price[options.indexOf(element)].textContent);
+                        // en caso contrario, se resta
+                    } else if(!el.target.checked) {
+                        amount.value = Number(amount.value) - Number(price[options.indexOf(element)].textContent);
+                        console.log(amount.value)
+
                     }
                 })
             });
