@@ -39,19 +39,24 @@ class InvoiceController extends Controller
             $rand_number = rand(000000,999999);
         }
 
-        Invoice::create([
+       $invoice = Invoice::create([
             'no_invoice' => $rand_number,
             'client_id' => $request->client_id,
             'date' => $request->date,
             'amount' => $request->amount
         ]);
-
-        $prod = Product::find($request->product);
-
-        /* $prod->invoices()->attach($prod,['price'=>$request->price,'quantity'=>$request->quantity]);
         
+        for($i=0; $i<=count($request->products)-1; $i+=1) {
+            $prodCount = array_values(array_filter($request->counts, function($num) {
+             return $num;
+        }));
+            Product::find($request->products[$i])->invoices()->attach($invoice,['price'=>10,'quantity'=>$prodCount[$i]]);
+        }
+/*         foreach($request->products as $product) {
+            Product::find($product)->invoices()->attach($invoice,['price'=>10,'quantity'=>1]);
+        } */
 
-        return redirect('/')->with('client','¡Factura creada correctamente!'); */
+        return redirect('/')->with('client','¡Factura creada correctamente!');
     }
 
     /**

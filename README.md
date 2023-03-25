@@ -1,3 +1,6 @@
+* 25/03/2023
+- Solucionando Facturas para recibir productos e introducirlo en la tabla pivot productos_factura
+
 * 23/03/2023
 - finalizado CRUD Facturas
 - Añadido sistema de pestañas en welcome

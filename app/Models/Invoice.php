@@ -12,7 +12,11 @@ class Invoice extends Model
 
     protected $fillable = ['no_invoice','client_id','date','amount'];
 
-    protected function client() {
+    public function client() {
         return $this->belongsTo(Client::class);
+    }
+
+    public function products() {
+        return $this->belongsToMany(Product::class);
     }
 }

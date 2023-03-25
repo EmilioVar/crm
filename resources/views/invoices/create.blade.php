@@ -18,27 +18,39 @@
                         <div class="form-floating">
                             <select name="client_id" class="form-select" id="client_id">
                                 @foreach ($clients as $client)
-                                    <option value="{{ $client->id }}">{{ $client->name }} | id: {{ $client->id }}</option>
+                                    <option value="{{ $client->id }}">{{ $client->name }} | id: {{ $client->id }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
+                    <!-- PRODUCTS -->
+                    <h3>Productos:</h3>
+                    <table id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td><input type="checkbox" name="products[]" id=""
+                                            value="{{ $product->id }}">{{ $product->name }} </input>
+                                    </td>
+                                    <td>
+                                        <p>{{ $product->price }}</p>
+                                    </td>
+                                    <td>
+                                        <input class="form-select"  type="number" name="counts[]" id="">
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-                    <div class="form-group">
-                        <label for="client_id">Producto:</label>
-                        <div class="form-floating">
-                            <select name="product" class="form-select" id="product">
-                                @foreach ($products as $product)
-                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="quantity">Cantidad:</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity">
-                    </div>
                     <div class="form-group">
                         <label for="date">Fecha:</label>
                         <input type="date" class="form-control" id="date" name="date">
@@ -59,4 +71,24 @@
             </div>
         </div>
     </div>
+    <x-slot:script>
+        <script>
+            $(document).ready(function() {
+                $('#productsTable').DataTable();
+            });
+
+            let options = document.querySelectorAll('input[type="checkbox"]');
+
+            options.forEach(element => {
+                element.addEventListener('change', el => {
+                    console.log(el.})
+                    if(el.target.checked) {
+                        console.log(el+"está marcado")
+                    }
+                })
+            });
+        </script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        </x-slot>
 </x-layout>

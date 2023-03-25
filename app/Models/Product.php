@@ -18,5 +18,9 @@ class Product extends Model
     public function getName() {
         return $this->name;
     }
+
+    public function invoices() {
+        return $this->belongsToMany(Invoice::class);
+    }
 }
 
