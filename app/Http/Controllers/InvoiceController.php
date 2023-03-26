@@ -24,7 +24,7 @@ class InvoiceController extends Controller
     {
         $products = Product::all();
         $clients = Client::all();
-        return view ('invoices.create', compact('clients','products'));
+        return view('invoices.create', compact('clients', 'products'));
     }
 
     /**
@@ -32,37 +32,37 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
-            'no_invoice'=> "nullable",
-            'client_id'=>"required",
-            'date'=>"required",
+            'no_invoice' => 'nullable',
+            'client_id' => 'required',
+            'date' => 'required',
         ]);
 
-        $rand_number = rand(000000,999999);
+        $rand_number = rand(000000, 999999);
         // comprobamos si existe en la base de datos, para evitar duplicados
-        while(Invoice::where('no_invoice','=',$rand_number)->exists()) {
-            $rand_number = rand(000000,999999);
+        while (Invoice::where('no_invoice', '=', $rand_number)->exists()) {
+            $rand_number = rand(000000, 999999);
         }
 
-       $invoice = Invoice::create([
+        $invoice = Invoice::create([
             'no_invoice' => $rand_number,
             'client_id' => $request->client_id,
             'date' => $request->date,
-            'amount' => $request->amount
+            'amount' => $request->amount,
         ]);
-        
-        for($i=0; $i<=count($request->products)-1; $i+=1) {
-            $prodCount = array_values(array_filter($request->counts, function($num) {
-             return $num;
-        }));
-            Product::find($request->products[$i])->invoices()->attach($invoice,['price'=> Product::find($request->products[$i])->price,'quantity'=>$prodCount[$i]]);
-        }
-/*         foreach($request->products as $product) {
-            Product::find($product)->invoices()->attach($invoice,['price'=>10,'quantity'=>1]);
-        } */
 
-        return redirect('/')->with('client','¡Factura creada correctamente!');
+        for ($i = 0; $i <= count($request->products) - 1; $i += 1) {
+            $prodCount = array_values(
+                array_filter($request->counts, function ($num) {
+                    return $num;
+                }),
+            );
+            Product::find($request->products[$i])
+                ->invoices()
+                ->attach($invoice, ['price' => Product::find($request->products[$i])->price, 'quantity' => $prodCount[$i]]);
+        }
+
+        return redirect('/')->with('client', '¡Factura creada correctamente!');
     }
 
     /**
@@ -71,7 +71,7 @@ class InvoiceController extends Controller
     public function show(Invoice $invoice)
     {
         $client = Client::find($invoice->client_id);
-        return view ('invoices.show', compact('invoice','client'));
+        return view('invoices.show', compact('invoice', 'client'));
     }
 
     /**
@@ -80,7 +80,7 @@ class InvoiceController extends Controller
     public function edit(Invoice $invoice)
     {
         $clients = Client::all();
-        return view ('invoices.edit', compact('invoice','clients'));
+        return view('invoices.edit', compact('invoice', 'clients'));
     }
 
     /**
@@ -105,6 +105,6 @@ class InvoiceController extends Controller
     {
         $invoice->delete();
 
-        return redirect('/')->with('client','¡Factura eliminada correctamente!');
+        return redirect('/')->with('client', '¡Factura eliminada correctamente!');
     }
 }

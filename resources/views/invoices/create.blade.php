@@ -44,7 +44,7 @@
                                         <p id="priceProduct">{{ $product->price }}</p>
                                     </td>
                                     <td>
-                                        <input class="form-select"  type="number" name="counts[]" id="">
+                                        <input class="form-select" id="counts"  type="number" name="counts[]" id="">
                                     </td>
                                 </tr>
                             @endforeach
@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group">
                         <label for="amount">Importe:</label>
-                        <input value="0" type="number" class="form-control" id="amount" name="amount" placeholder="importe">
+                        <input value="0" type="number" readonly class="form-control" id="amount" name="amount" placeholder="importe">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -81,6 +81,8 @@
             let options = [...document.querySelectorAll('input[type="checkbox"]')];
             let price = [...document.querySelectorAll('#priceProduct')];
             let amount = document.querySelector('#amount');
+            let quantity = [...document.querySelectorAll('#counts')];
+            console.log(quantity)
             // iteramos los options para escuchar el evento change
             options.forEach(element => {
                 element.addEventListener('change', el => {
@@ -91,10 +93,15 @@
                         el mismo lugar de indice en la tabla que el
                         producto seleccionado */
                         amount.value = Number(amount.value) + Number(price[options.indexOf(element)].textContent);
+
+                        //partimos de que mínimo tendremos un producto, por lo que le imprimimos valor 1
+                        quantity[options.indexOf(element)].value = 1;
                         // en caso contrario, se resta
                     } else if(!el.target.checked) {
                         amount.value = Number(amount.value) - Number(price[options.indexOf(element)].textContent);
-                        console.log(amount.value)
+
+                        // e igualmente, se restablece su input a null
+                        quantity[options.indexOf(element)].value = null;
 
                     }
                 })
