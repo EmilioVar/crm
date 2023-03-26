@@ -86,7 +86,12 @@
             let price = [...document.querySelectorAll('#priceProduct')];
             let amount = document.querySelector('#amount');
             let quantity = [...document.querySelectorAll('#counts')];
-            console.log(quantity)
+
+            quantity.forEach(el => {
+                el.addEventListener('input', q => {
+                    console.log(q.data)
+                });
+            })
             // iteramos los options para escuchar el evento change
             options.forEach(element => {
                 element.addEventListener('change', el => {
@@ -106,7 +111,6 @@
 
                         // e igualmente, se restablece su input a null
                         quantity[options.indexOf(element)].value = null;
-
                     }
                 })
             });
