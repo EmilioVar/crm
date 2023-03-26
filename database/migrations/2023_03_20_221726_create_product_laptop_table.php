@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('product_laptop', function (Blueprint $table) {
             $table->id();
-            $table->integer('code')->default('000000');
-            $table->text('name');
-            $table->float('price',8,2);
+            $table->foreignId('product_id')->constrained();
             $table->integer('core');
             $table->integer('ram');
             $table->integer('velocity');

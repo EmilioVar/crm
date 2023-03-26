@@ -12,5 +12,9 @@ class ProductLaptop extends Product
     // seleccionamos la tabla de la base de datos
     
     protected $table = 'product_laptop';
-    protected $fillable = ['code','name','price','core', 'ram', 'velocity'];
+    protected $fillable = ['product_id','core', 'ram', 'velocity'];
+
+    public function product() {
+        return $this->belongsTo(Product::class);
+    }
 }

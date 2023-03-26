@@ -1,3 +1,8 @@
+* 27/03/2023
+- Trabajando con la herencia, he conseguido que en la tabla productLaptop solo estén los elementos que pertenecen a las características de la pantalla, y los he unido a un producto mediante product_id.
+Tras ello, he establecido una relacion 1:N por parte de productLaptop a Product.
+Para acceder a todas las propiedades he creado un método en la clase padre llamado fullLaptop(), en el cual se obtiene un array con todos los elementos de un producto Laptop.
+
 * 25/03/2023
 - Solucionando Facturas para recibir productos e introducirlo en la tabla pivot productos_factura
 
