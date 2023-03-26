@@ -33,6 +33,12 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'no_invoice'=> "nullable",
+            'client_id'=>"required",
+            'date'=>"required",
+        ]);
+
         $rand_number = rand(000000,999999);
         // comprobamos si existe en la base de datos, para evitar duplicados
         while(Invoice::where('no_invoice','=',$rand_number)->exists()) {

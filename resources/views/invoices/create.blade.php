@@ -76,11 +76,12 @@
             $(document).ready(function() {
                 $('#productsTable').DataTable();
             });
-            // importamos los elementos necesarios para el total y los convertimos en array
+            /* importamos los elementos necesarios para el total
+            y los convertimos en array con spring operator */
             let options = [...document.querySelectorAll('input[type="checkbox"]')];
             let price = [...document.querySelectorAll('#priceProduct')];
             let amount = document.querySelector('#amount');
-            // iteramos los options para escuchar su evento cambiante
+            // iteramos los options para escuchar el evento change
             options.forEach(element => {
                 element.addEventListener('change', el => {
                     // si el elemento es marcado
