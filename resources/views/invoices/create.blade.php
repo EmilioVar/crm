@@ -11,10 +11,12 @@
                         </ul>
                     </div>
                 @endif
+                <!-- init form -->
                 <form method="post" action="{{ route('invoices.store') }}">
                     @csrf
                     <div class="form-group">
                         <label for="client_id">Cliente:</label>
+                        <!-- CLIENT -->
                         <div class="form-floating">
                             <select name="client_id" class="form-select" id="client_id">
                                 @foreach ($clients as $client)
@@ -50,17 +52,19 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                    <!-- DATE -->
                     <div class="form-group">
                         <label for="date">Fecha:</label>
                         <input type="date" class="form-control" id="date" name="date">
                     </div>
+                    <!-- AMOUNT -->
                     <div class="form-group">
                         <label for="amount">Importe:</label>
                         <input value="0" type="number" readonly class="form-control" id="amount" name="amount" placeholder="importe">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+                
                 <x-slot:script>
                     <script>
                         $(document).ready(function() {
