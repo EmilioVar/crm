@@ -33,18 +33,26 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Precio</th>
+                                <th>Total</th>
                                 <th>Cantidad</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($products as $product)
                                 <tr>
+                                    <!-- nombre -->
                                     <td><input type="checkbox" name="products[]" id=""
                                             value="{{ $product->id }}">{{ $product->name }} </input>
                                     </td>
+                                    <!-- precio -->
                                     <td>
                                         <p id="priceProduct">{{ $product->price }}</p>
                                     </td>
+                                    <!-- total -->
+                                    <td>
+                                        <p id="priceTotal">{{ $product->price }}</p>
+                                    </td>
+                                    <!-- cantidad -->
                                     <td>
                                         <input class="form-select" id="counts"  type="number" name="counts[]" id="">
                                     </td>
@@ -84,33 +92,34 @@
             y los convertimos en array con spring operator */
             let options = [...document.querySelectorAll('input[type="checkbox"]')];
             let price = [...document.querySelectorAll('#priceProduct')];
+            let total = [...document.querySelectorAll('#priceTotal')]
             let amount = document.querySelector('#amount');
             let quantity = [...document.querySelectorAll('#counts')];
 
-            quantity.forEach(el => {
-                el.addEventListener('input', q => {
-                    console.log(q.data)
-                });
-            })
+            
             // iteramos los options para escuchar el evento change
-            options.forEach(option,index => {
-                element.addEventListener('change', el => {
+            options.forEach((option,index) => {
+
+                quantity[index].addEventListener('change', ()=> {
+                            total[index].innerHTML = price[index].innerHTML * quantity[index].value;
+                        })
+
+                option.addEventListener('change', el => {
                     // si el elemento es marcado
-                    if(option.target.checked) {
+                    if(el.target.checked) {
+                        console.log(price[index].innerHTML);
+                        console.log(quantity[index].value)
                         /* incrementamos el valor del total
                         añadiendole el precio que se encuentra en
                         el mismo lugar de indice en la tabla que el
                         producto seleccionado */
-                        amount.value = Number(amount.value) + Number(price[options.indexOf(element)].textContent);
+                            amount.value = Number(amount.value) + Number(total[index].innerHTML);
 
-                        //partimos de que mínimo tendremos un producto, por lo que le imprimimos valor 1
-                        quantity[options.indexOf(element)].value = 1;
-                        // en caso contrario, se resta
                     } else if(!el.target.checked) {
-                        amount.value = Number(amount.value) - Number(price[options.indexOf(element)].textContent);
+                        amount.value = Number(amount.value) - Number(price[options.indexOf(option)].textContent);
 
                         // e igualmente, se restablece su input a null
-                        quantity[options.indexOf(element)].value = null;
+                        quantity[options.indexOf(option)].value = null;
                     }
                 })
             });
