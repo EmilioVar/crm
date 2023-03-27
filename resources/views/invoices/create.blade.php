@@ -99,48 +99,37 @@
             let quantity = [...document.querySelectorAll('#counts')];
 
 
-            // declaramos un array de precios vacío
-            let prices = [];
+
+            // obtenemos los precios totales de todos los productos
+            let prices = total.map(el => Number(el.innerHTML));
+
             // iteramos las opciones
             options.forEach((option, index) => {
                 // escuchamos el evento de cambio de cantidad de producto
                 quantity[index].addEventListener('change', () => {
                     // incrementamos en la columna total el precio original por la cantidad
                     total[index].innerHTML = price[index].innerHTML * quantity[index].value;
-                    // reseteamos el array original por si habían datos antes
-                    prices = [];
-                    // iteramos todos los precios y los añadimos al array precios
-                    total.forEach(el => {
-                    prices.push(Number(el.innerHTML));
-                    })
+                    // actualizamos el array de precios con los nuevos precios totales
+                    prices = total.map(el => Number(el.innerHTML));
                     // mediante el método reduce sumamos todos los valores, los que no están seleccionados son 0
-                    amount.value = prices.reduce((acc,curr) => acc += curr)
-                })
+                    amount.value = prices.reduce((acc, curr) => acc += curr);
+                });
+
                 // escuchamos el evento de selecionar un producto
                 option.addEventListener('change', el => {
                     // si el elemento es marcado
                     if (el.target.checked) {
-                        /* incrementamos el valor del total
-                        añadiendole el precio que se encuentra en
-                        el mismo lugar de indice en la tabla que el
-                        producto seleccionado */
-                        total[index].innerHTML = price[index].innerHTML
-                        // le añadimos un mínimo por defecto
-                        quantity[index].value = 1
-                        //aumentamos al total el precio
-                        amount.value = Number(amount.value) + Number(total[index].innerHTML);
-
-
+                        quantity[index].value = 1;
+                        total[index].innerHTML = price[index].innerHTML;
                     } else if (!el.target.checked) {
-                        total[index.innerHTML] = 0
-                        quantity[index].value = 0
-                        //disminuimos el total
-                        amount.value = Number(amount.value) - Number(total[index].textContent);
-
-                        // e igualmente, se restablece su input a null
+                        total[index].innerHTML = 0;
                         quantity[index].value = null;
                     }
-                })
+                    // actualizamos el array de precios con los nuevos precios totales
+                    prices = total.map(el => Number(el.innerHTML));
+                    // mediante el método reduce sumamos todos los valores, los que no están seleccionados son 0
+                    amount.value = prices.reduce((acc, curr) => acc += curr);
+                });
             });
         </script>
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
