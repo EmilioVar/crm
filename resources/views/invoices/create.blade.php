@@ -98,8 +98,7 @@
             let amount = document.querySelector('#amount');
             let quantity = [...document.querySelectorAll('#counts')];
 
-
-
+            
             // obtenemos los precios totales de todos los productos
             let prices = total.map(el => Number(el.innerHTML));
 
