@@ -50,11 +50,12 @@
                                     </td>
                                     <!-- total -->
                                     <td>
-                                        <p id="priceTotal">{{ $product->price }}</p>
+                                        <p id="priceTotal">0</p>
                                     </td>
                                     <!-- cantidad -->
                                     <td>
-                                        <input class="form-select" id="counts"  type="number" name="counts[]" id="">
+                                        <input class="form-select" id="counts" type="number" name="counts[]"
+                                            id="">
                                     </td>
                                 </tr>
                             @endforeach
@@ -68,11 +69,12 @@
                     <!-- AMOUNT -->
                     <div class="form-group">
                         <label for="amount">Importe:</label>
-                        <input value="0" type="number" readonly class="form-control" id="amount" name="amount" placeholder="importe">
+                        <input value="0" type="number" readonly class="form-control" id="amount" name="amount"
+                            placeholder="importe">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                
+
                 <x-slot:script>
                     <script>
                         $(document).ready(function() {
@@ -96,30 +98,44 @@
             let amount = document.querySelector('#amount');
             let quantity = [...document.querySelectorAll('#counts')];
 
-            
-            // iteramos los options para escuchar el evento change
-            options.forEach((option,index) => {
 
-                quantity[index].addEventListener('change', ()=> {
-                            total[index].innerHTML = price[index].innerHTML * quantity[index].value;
-                        })
+            // iteramos los options para escuchar el evento change
+            let prices = [];
+            options.forEach((option, index) => {
+                quantity[index].addEventListener('change', () => {
+                    total[index].innerHTML = price[index].innerHTML * quantity[index].value;
+                    prices = [];
+                    total.forEach(el => {
+                    prices.push(Number(el.innerHTML));
+                    })
+
+                    console.log(prices)
+
+                    amount.value = prices.reduce((acc,curr) => acc += curr)
+                })
 
                 option.addEventListener('change', el => {
                     // si el elemento es marcado
-                    if(el.target.checked) {
+                    if (el.target.checked) {
                         console.log(price[index].innerHTML);
                         console.log(quantity[index].value)
+
                         /* incrementamos el valor del total
                         añadiendole el precio que se encuentra en
                         el mismo lugar de indice en la tabla que el
                         producto seleccionado */
-                            amount.value = Number(amount.value) + Number(total[index].innerHTML);
+                        total[index].innerHTML = price[index].innerHTML
+                        quantity[index].value = 1
+                        amount.value = Number(amount.value) + Number(total[index].innerHTML);
 
-                    } else if(!el.target.checked) {
-                        amount.value = Number(amount.value) - Number(price[options.indexOf(option)].textContent);
+
+                    } else if (!el.target.checked) {
+                        total[index.innerHTML] = 0
+                        quantity[index].value = 0
+                        amount.value = Number(amount.value) - Number(total[index].textContent);
 
                         // e igualmente, se restablece su input a null
-                        quantity[options.indexOf(option)].value = null;
+                        quantity[index].value = null;
                     }
                 })
             });
