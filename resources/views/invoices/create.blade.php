@@ -127,13 +127,14 @@
                         total[index].innerHTML = price[index].innerHTML
                         // le añadimos un mínimo por defecto
                         quantity[index].value = 1
-                        //aumentamos el total
+                        //aumentamos al total el precio
                         amount.value = Number(amount.value) + Number(total[index].innerHTML);
 
 
                     } else if (!el.target.checked) {
                         total[index.innerHTML] = 0
                         quantity[index].value = 0
+                        //disminuimos el total
                         amount.value = Number(amount.value) - Number(total[index].textContent);
 
                         // e igualmente, se restablece su input a null
