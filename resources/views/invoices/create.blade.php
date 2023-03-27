@@ -93,10 +93,10 @@
                 });
             })
             // iteramos los options para escuchar el evento change
-            options.forEach(element => {
+            options.forEach(option,index => {
                 element.addEventListener('change', el => {
                     // si el elemento es marcado
-                    if(el.target.checked) {
+                    if(option.target.checked) {
                         /* incrementamos el valor del total
                         añadiendole el precio que se encuentra en
                         el mismo lugar de indice en la tabla que el
