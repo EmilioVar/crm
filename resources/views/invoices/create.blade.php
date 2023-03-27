@@ -99,33 +99,35 @@
             let quantity = [...document.querySelectorAll('#counts')];
 
 
-            // iteramos los options para escuchar el evento change
+            // declaramos un array de precios vacío
             let prices = [];
+            // iteramos las opciones
             options.forEach((option, index) => {
+                // escuchamos el evento de cambio de cantidad de producto
                 quantity[index].addEventListener('change', () => {
+                    // incrementamos en la columna total el precio original por la cantidad
                     total[index].innerHTML = price[index].innerHTML * quantity[index].value;
+                    // reseteamos el array original por si habían datos antes
                     prices = [];
+                    // iteramos todos los precios y los añadimos al array precios
                     total.forEach(el => {
                     prices.push(Number(el.innerHTML));
                     })
-
-                    console.log(prices)
-
+                    // mediante el método reduce sumamos todos los valores, los que no están seleccionados son 0
                     amount.value = prices.reduce((acc,curr) => acc += curr)
                 })
-
+                // escuchamos el evento de selecionar un producto
                 option.addEventListener('change', el => {
                     // si el elemento es marcado
                     if (el.target.checked) {
-                        console.log(price[index].innerHTML);
-                        console.log(quantity[index].value)
-
                         /* incrementamos el valor del total
                         añadiendole el precio que se encuentra en
                         el mismo lugar de indice en la tabla que el
                         producto seleccionado */
                         total[index].innerHTML = price[index].innerHTML
+                        // le añadimos un mínimo por defecto
                         quantity[index].value = 1
+                        //aumentamos el total
                         amount.value = Number(amount.value) + Number(total[index].innerHTML);
 
 
