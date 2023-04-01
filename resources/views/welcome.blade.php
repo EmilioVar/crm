@@ -42,12 +42,12 @@
                     <div class="tab-pane fade" id="nav-products" role="tabpanel" aria-labelledby="nav-products-tab"
                         tabindex="0">
                         <!-- Products table -->
-                        <livewire:products :products="$products" />
+                        <livewire:products :products="$products"/>
                     </div>
                     <div class="tab-pane fade" id="nav-invoices" role="tabpanel" aria-labelledby="nav-invoices-tab"
                         tabindex="0">
                         <!-- Invoices table -->
-                        <livewire:invoices :invoices="$invoices" />
+                        <livewire:invoices :invoices="$invoices" :invoclients="$invoclients"/>
                     </div>
                 </div>
             </div>

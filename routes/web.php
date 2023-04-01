@@ -24,7 +24,11 @@ Route::get('/', function () {
     $clients = Client::latest()->get();
     $products = Product::latest()->get();
     $invoices = Invoice::latest()->get();
-    return view('welcome', compact('clients','products','invoices'));
+    $invoclients = [];
+    foreach($invoices as $invoice) {
+         $invoclients[] = $clients->find($invoice->client_id)->name;
+    };
+    return view('welcome', compact('clients','products','invoices','invoclients'));
 });
 
 Auth::routes();

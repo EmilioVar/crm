@@ -16,7 +16,7 @@
         <tr>
             <th scope="row">{{ $invoice->id }}</th>
             <td>{{ $invoice->no_invoice }}</td>
-            <td>{{  App\Models\Client::find($invoice->client_id)->name }}</td>
+            <td>{{  $invoclients[$loop->index] }}</td>
             <td>{{ $invoice->date }}</td>
             <td>{{ $invoice->amount }}</td>
              <td>
