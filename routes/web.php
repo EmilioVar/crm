@@ -24,10 +24,13 @@ Route::get('/', function () {
     $clients = Client::latest()->get();
     $products = Product::latest()->get();
     $invoices = Invoice::latest()->get();
+    // para los clientes, inicio un array vacío
     $invoclients = [];
+    // itero en cada factura y extraigo los nombres, los cuales añado al array
     foreach($invoices as $invoice) {
          $invoclients[] = $clients->find($invoice->client_id)->name;
     };
+
     return view('welcome', compact('clients','products','invoices','invoclients'));
 });
 
