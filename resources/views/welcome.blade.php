@@ -61,6 +61,10 @@
             $(document).ready(function() {
                 $('#clientWelcome').DataTable();
             });
+            // datatable invoices
+            $(document).ready(function() {
+                $('#invoiceWelcome').DataTable();
+            });
         </script>
         </x-slot>
 </x-layout>
