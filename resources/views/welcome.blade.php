@@ -9,11 +9,8 @@
                 @endif
                 @if (Auth::user())
                     <h1 class="fs-4 my-5">Hola {{ Auth::user()->name }}! 👋🏼</h1>
-
                 @else
-                <h1 class="fs-4 my-5">Bienvenido! eres un usuario no logueado</h1>
-
-
+                    <h1 class="fs-4 my-5">Bienvenido! eres un usuario no logueado</h1>
                 @endif
                 <div>
                     <!-- tables -->
@@ -42,15 +39,28 @@
                     <div class="tab-pane fade" id="nav-products" role="tabpanel" aria-labelledby="nav-products-tab"
                         tabindex="0">
                         <!-- Products table -->
-                        <livewire:products :products="$products"/>
+                        <livewire:products :products="$products" />
                     </div>
                     <div class="tab-pane fade" id="nav-invoices" role="tabpanel" aria-labelledby="nav-invoices-tab"
                         tabindex="0">
                         <!-- Invoices table -->
-                        <livewire:invoices :invoices="$invoices" :invoclients="$invoclients"/>
+                        <livewire:invoices :invoices="$invoices" :invoclients="$invoclients" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <x-slot:script>
+        <script>
+            // datatable products
+            console.log('aqui')
+            $(document).ready(function() {
+                $('#productWelcome').DataTable();
+            });
+            // datatable clients
+            $(document).ready(function() {
+                $('#clientWelcome').DataTable();
+            });
+        </script>
+        </x-slot>
 </x-layout>

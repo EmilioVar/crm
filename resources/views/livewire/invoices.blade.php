@@ -31,9 +31,7 @@
 <x-slot:script>
     <script>
         $(document).ready(function() {
-            $('#invoiceWelcome').DataTable({
-                responsive: true
-            });
+            $('#invoiceWelcome').DataTable();
         });
     </script>
     </x-slot>
