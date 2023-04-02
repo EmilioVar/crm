@@ -78,60 +78,56 @@
                 <x-slot:script>
                     <script>
                         $(document).ready(function() {
-                            $('.form-select').select2();
+                            $('#client_id').select2();
+                        });
+                    </script>
+                    <script>
+                        $(document).ready(function() {
+                            $('#productsTable').DataTable();
+                        });
+                        /* importamos los elementos necesarios para el total
+                        y los convertimos en array con spring operator */
+                        let options = [...document.querySelectorAll('input[type="checkbox"]')];
+                        let price = [...document.querySelectorAll('#priceProduct')];
+                        let total = [...document.querySelectorAll('#priceTotal')]
+                        let amount = document.querySelector('#amount');
+                        let quantity = [...document.querySelectorAll('#counts')];
+
+
+                        // obtenemos los precios totales de todos los productos
+                        let prices = total.map(el => Number(el.innerHTML));
+
+                        // iteramos las opciones
+                        options.forEach((option, index) => {
+                            // escuchamos el evento de cambio de cantidad de producto
+                            quantity[index].addEventListener('change', () => {
+                                // incrementamos en la columna total el precio original por la cantidad
+                                total[index].innerHTML = price[index].innerHTML * quantity[index].value;
+                                // actualizamos el array de precios con los nuevos precios totales
+                                prices = total.map(el => Number(el.innerHTML));
+                                // mediante el método reduce sumamos todos los valores, los que no están seleccionados son 0
+                                amount.value = prices.reduce((acc, curr) => acc += curr);
+                            });
+
+                            // escuchamos el evento de selecionar un producto
+                            option.addEventListener('change', el => {
+                                // si el elemento es marcado
+                                if (el.target.checked) {
+                                    quantity[index].value = 1;
+                                    total[index].innerHTML = price[index].innerHTML;
+                                } else if (!el.target.checked) {
+                                    total[index].innerHTML = 0;
+                                    quantity[index].value = null;
+                                }
+                                // actualizamos el array de precios con los nuevos precios totales
+                                prices = total.map(el => Number(el.innerHTML));
+                                // mediante el método reduce sumamos todos los valores, los que no están seleccionados son 0
+                                amount.value = prices.reduce((acc, curr) => acc += curr);
+                            });
                         });
                     </script>
                     </x-slot>
             </div>
         </div>
     </div>
-    <x-slot:script>
-        <script>
-            $(document).ready(function() {
-                $('#productsTable').DataTable();
-            });
-            /* importamos los elementos necesarios para el total
-            y los convertimos en array con spring operator */
-            let options = [...document.querySelectorAll('input[type="checkbox"]')];
-            let price = [...document.querySelectorAll('#priceProduct')];
-            let total = [...document.querySelectorAll('#priceTotal')]
-            let amount = document.querySelector('#amount');
-            let quantity = [...document.querySelectorAll('#counts')];
-
-            
-            // obtenemos los precios totales de todos los productos
-            let prices = total.map(el => Number(el.innerHTML));
-
-            // iteramos las opciones
-            options.forEach((option, index) => {
-                // escuchamos el evento de cambio de cantidad de producto
-                quantity[index].addEventListener('change', () => {
-                    // incrementamos en la columna total el precio original por la cantidad
-                    total[index].innerHTML = price[index].innerHTML * quantity[index].value;
-                    // actualizamos el array de precios con los nuevos precios totales
-                    prices = total.map(el => Number(el.innerHTML));
-                    // mediante el método reduce sumamos todos los valores, los que no están seleccionados son 0
-                    amount.value = prices.reduce((acc, curr) => acc += curr);
-                });
-
-                // escuchamos el evento de selecionar un producto
-                option.addEventListener('change', el => {
-                    // si el elemento es marcado
-                    if (el.target.checked) {
-                        quantity[index].value = 1;
-                        total[index].innerHTML = price[index].innerHTML;
-                    } else if (!el.target.checked) {
-                        total[index].innerHTML = 0;
-                        quantity[index].value = null;
-                    }
-                    // actualizamos el array de precios con los nuevos precios totales
-                    prices = total.map(el => Number(el.innerHTML));
-                    // mediante el método reduce sumamos todos los valores, los que no están seleccionados son 0
-                    amount.value = prices.reduce((acc, curr) => acc += curr);
-                });
-            });
-        </script>
-        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-        </x-slot>
 </x-layout>

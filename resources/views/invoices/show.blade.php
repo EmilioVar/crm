@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($products as $product)
+                        @foreach ($products as $product)
                         <tr>
                             <th scope="row">{{ $product->id }}</th>
                             <td>{{ $product->code }}</td>
@@ -30,9 +30,7 @@
                                         href="{{ route('products.show', $product) }}">ver</a></button>
                             </td>
                         </tr>
-                        @empty
-                            <p class="alert alert-warning">¡No hay clientes! hay que ponerse las pilas ;D</p>
-                        @endforelse
+                        @endforeach
                     </tbody>
                 </table>
                   <p class="card-text"><span class="fw-bold">fecha:</span> {{ $invoice->date }}</p>

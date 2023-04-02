@@ -70,7 +70,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        $client = Client::find($invoice->client_id);
+        $client = Client::withTrashed()->find($invoice->client_id);
         $products = $invoice->products()->get();
         return view('invoices.show', compact('invoice', 'client','products'));
     }

@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
       <label for="price">Precio</label>
-      <input wire:model="price" type="number" class="form-control" id="price" placeholder="Precio">
+      <input step="0.01" wire:model="price" type="number" class="form-control" id="price" placeholder="Precio">
       @error('price') <span class="error">{{ $message }}</span> @enderror
     </div>
     <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">Submit</button>
