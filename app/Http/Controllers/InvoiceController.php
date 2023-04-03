@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use stdClass;
 use App\Models\Client;
 use App\Models\Invoice;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
@@ -70,9 +72,39 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
+        // aquí empieza la película:
+
+        // traemos los clientes, incluso los eliminados
         $client = Client::withTrashed()->find($invoice->client_id);
-        $products = $invoice->products()->withTrashed()->get();
-        return view('invoices.show', compact('invoice', 'client','products'));
+        // igualmente con los productos, incluso los eliminados
+        $products = $invoice
+            ->products()
+            ->withTrashed()
+            ->get();
+        // iniciamos una variable que llevará el recuento de productos
+        $quantity = [];
+        /**con queryBuilder
+         * traemos los elementos que tengan
+         * el id de la request
+         */
+        $pivotTable = DB::table('invoice_product')
+            ->where('invoice_id', $invoice->id)
+            ->get();
+        // inicalizamos un array que contendrá los productos y las cantidades
+        $prodAndCount = [];
+        /**itreamos la tabla pivot y
+         * pusheamos un nuevo objeto por cada
+         * iteración en la que está la instancia
+         * del producto y su cantidad
+         */
+        foreach ($pivotTable as $index => $element) {
+            $obj = new stdClass();
+            $obj->product_id = $products[$index];
+            $obj->quantity = $element->quantity;
+            $prodAndCount[] = $obj;
+        }
+
+        return view('invoices.show', compact('invoice', 'client','prodAndCount'));
     }
 
     /**
