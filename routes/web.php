@@ -5,6 +5,7 @@ use App\Models\Invoice;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
@@ -56,3 +57,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::delete('/products/{product}',[ProductController::class, 'destroy'])->name('products.destroy');
 });
 
+/* API REST */
+
+Route::get('/api/users/all', [ApiController::class, 'index']);
+Route::get('/api/user/{id}', [ApiController::class, 'show']);
+Route::post('/api/user/create', [ApiController::class, 'store']);
