@@ -43,7 +43,6 @@
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <select name="rol" class="form-select" id="rol" aria-label="Floating label select example">
-                                        <option value="">Ná de Ná</option>
                                       <option value="admin">Administrador</option>
                                       <option value="vendor">Vendedor</option>
                                     </select>
