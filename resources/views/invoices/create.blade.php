@@ -15,7 +15,7 @@
                 <form method="post" action="{{ route('invoices.store') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="client_id">Cliente:</label>
+                        <label for="client_id"><h3 class="my-3">Cliente:</h3></label>
                         <!-- CLIENT -->
                         <div class="form-floating">
                             <select name="client_id" class="form-select" id="client_id">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <!-- PRODUCTS -->
-                    <h3>Productos:</h3>
+                    <h3 class="my-3">Productos:</h3>
                     <table id="productsTable">
                         <thead>
                             <tr>
@@ -63,16 +63,16 @@
                     </table>
                     <!-- DATE -->
                     <div class="form-group">
-                        <label for="date">Fecha:</label>
+                        <label for="date"><h3>Fecha:</h3></label>
                         <input type="date" class="form-control" id="date" name="date">
                     </div>
                     <!-- AMOUNT -->
                     <div class="form-group">
-                        <label for="amount">Importe:</label>
+                        <label for="amount"><h3 class="my-3">Importe:</h3></label>
                         <input value="0" type="number" readonly class="form-control" id="amount" name="amount"
                             placeholder="importe">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary my-3">Submit</button>
                 </form>
 
                 <x-slot:script>
