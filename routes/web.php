@@ -61,4 +61,5 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 Route::get('/api/users/all', [ApiController::class, 'index']);
 Route::get('/api/user/{id}', [ApiController::class, 'show']);
+// añadida ruta post en excepts de VerifyCsrfToken.php
 Route::post('/api/user/create', [ApiController::class, 'store']);
