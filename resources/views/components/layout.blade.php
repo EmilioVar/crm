@@ -15,9 +15,12 @@
 
 <!-- body -->
 <body>
+    <!-- navbar -->
     <x-nav-bar/>
     {{ $slot }}
+    <!-- footer-->
     <x-footer/>
+    <!-- scripts -->
     @livewireScripts
     <!-- fa icons -->
     <script src="https://kit.fontawesome.com/6ec5d09d9f.js" crossorigin="anonymous"></script>
