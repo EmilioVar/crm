@@ -2,11 +2,19 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
+
                 @if (session('client'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success my-3">
                         {{ session('client') }}
                     </div>
                 @endif
+
+                @if (session('roleAutorized'))
+                    <div class="alert alert-danger my-3">
+                        {{ session('roleAutorized') }}
+                    </div>
+                @endif
+
                 @if (Auth::user())
                     <h1 class="fs-4 my-5">Hola {{ Auth::user()->name }}! 👋🏼</h1>
                 @else

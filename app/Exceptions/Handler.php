@@ -2,11 +2,23 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Spatie\Permission\Exceptions\UnauthorizedException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
+    // redirect to index
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof UnauthorizedException) {
+            // redirigir al usuario a una página de acceso denegado o mostrar un mensaje de error personalizado
+            return redirect('/')->with('roleAutorized', 'no tienes permisos para realizar esta acción, por favor solicita ser administrador');
+        }
+
+        return parent::render($request, $exception);
+    }
+    
     /**
      * A list of exception types with their corresponding custom log levels.
      *
