@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-
+                <!-- alerts -->
                 @if (session('client'))
                     <div class="alert alert-success my-3">
                         {{ session('client') }}
@@ -14,13 +14,38 @@
                         {{ session('roleAutorized') }}
                     </div>
                 @endif
-
+                <!-- info -->
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Información de uso
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="alert alert-info my-3">
+                                <p>Bienvenido a la página principal, a continuación encontrarás:</p>
+                                <ul>
+                                    <li>tablas de clientes, productos y facturas</li>
+                                    <li>capacidad de registrarte o autenticarte</li>
+                                    <li>CRUD de clientes</li>
+                                    <li>CRUD de productos</li>
+                                    <li>creación y visión de facturas</li>
+                                </ul>
+                                <p>hay algunas limitaciones, por lo que te recomiendo que te registres con el rol administrador para poder utilizar todas las herramientas</p>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
                 @if (Auth::user())
                     <h1 class="fs-4 my-5">Hola {{ Auth::user()->name }}! 👋🏼</h1>
                 @else
                     <h1 class="fs-4 my-5">Bienvenido! eres un usuario no logueado</h1>
                 @endif
                 <div>
+
                     <!-- tables -->
 
                     <div class="nav nav-tabs my-4" id="nav-tab" role="tablist">

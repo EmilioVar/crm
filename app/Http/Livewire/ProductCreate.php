@@ -45,6 +45,8 @@ class ProductCreate extends Component
         ]);
         // limpiamos el formulario
         $this->cleanform();
+
+        return redirect('/')->with('client', '¡Producto creado correctamente!');
     }
     
     public function render()
