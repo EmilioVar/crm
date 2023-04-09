@@ -14,7 +14,7 @@
                 <hr>
                 <div>
                     <h4>Detalle de usuario <strong>GET</strong>:</h4>
-                    <p>para obtener el detalle de un usuario, pasando el el id</p>
+                    <p>para obtener el detalle de un usuario</p>
                     <code>https://crm.emiliovargas.es/api/user/{id}</code>
                 </div>
                 <hr>
