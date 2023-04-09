@@ -51,86 +51,94 @@
                 @endguest
             </ul>
             <!-- modal create Client -->
-            <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                data-bs-whatever="@mdo">Crear Cliente</button>
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Cliente</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
-                                    <form method="post" action="{{ route('clients.store') }}">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label for="name">Nombre:</label>
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Nombre">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="direction">Direccion:</label>
-                                            <input type="text" class="form-control" id="direction" name="direction" placeholder="Dirección">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-primary">Guardar</button>
-                                        </div>
-                                    </form>
+            <div>
+                <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-bs-whatever="@mdo">Crear Cliente</button>
+    
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Cliente</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        <form method="post" action="{{ route('clients.store') }}">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="name">Nombre:</label>
+                                                <input type="text" class="form-control" id="name" name="name"
+                                                    placeholder="Nombre">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="direction">Direccion:</label>
+                                                <input type="text" class="form-control" id="direction" name="direction"
+                                                    placeholder="Dirección">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Modal Product create -->
-            <button type="button" class="btn btn-warning mx-3" data-bs-toggle="modal" data-bs-target="#ProductCreate"
-                data-bs-whatever="@mdo">Crear Producto</button>
-
-            <div class="modal fade" id="ProductCreate" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Producto</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
-                                   <livewire:product-create/>
+                <!-- Modal Product create -->
+                <button type="button" class="btn btn-warning my-3" data-bs-toggle="modal" data-bs-target="#ProductCreate"
+                    data-bs-whatever="@mdo">Crear Producto</button>
+    
+                <div class="modal fade" id="ProductCreate" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Producto</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        <livewire:product-create />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- Create Invoice -->
+                <a href="{{ route('invoices.create') }}"><button type="button" class="btn btn-primary"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Crear
+                        Factura</button></a>
+                <a href="{{ route('api.index') }}"><button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" data-bs-whatever="@mdo">Api</button></a>
             </div>
-            <!-- Create Invoice -->
-            <a href="{{ route ('invoices.create') }}"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                data-bs-whatever="@mdo">Crear Factura</button></a>
         </div>
     </div>
 </nav>

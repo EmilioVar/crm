@@ -25,7 +25,7 @@
                       <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="alert alert-info my-3">
-                                <p>Bienvenido a la página principal, a continuación encontrarás:</p>
+                                <p>Bienvenid@ a la página principal, a continuación encontrarás:</p>
                                 <ul>
                                     <li>tablas de clientes, productos y facturas</li>
                                     <li>capacidad de registrarte o autenticarte</li>

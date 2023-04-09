@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ApiController extends Controller
 {
     public function index()
     {
+        return view('api.index');
+    }
+
+    public function all() {
         $users = User::all();
 
         return response()->json($users, 200);
@@ -29,7 +34,11 @@ class ApiController extends Controller
         ]);
         
         // Luego, puedes crear o actualizar registros en la base de datos
-        User::create($datos);
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
         
         // Finalmente, genera una respuesta que se enviará de vuelta a Postman
         return response()->json([
